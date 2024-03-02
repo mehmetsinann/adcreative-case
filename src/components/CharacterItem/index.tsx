@@ -16,17 +16,15 @@ export const CharacterItem = ({
 }) => {
   const dispatch: AppDispatch = useDispatch();
   return (
-    <div className={`w-full flex flex-row space-x-4 items-center p-2`}>
-      <input
-        type="checkbox"
-        className="w-6 h-6"
-        onChange={() => {
-          !isSelected
-            ? dispatch(select(character))
-            : dispatch(unselect(character));
-        }}
-        checked={isSelected}
-      />
+    <div
+      className={`w-full flex flex-row space-x-4 items-center p-2 hover:bg-gray-100 cursor-pointer`}
+      onClick={() => {
+        !isSelected
+          ? dispatch(select(character))
+          : dispatch(unselect(character));
+      }}
+    >
+      <input type="checkbox" className="w-6 h-6" checked={isSelected} />
       <img
         src={character.image}
         alt={character.name}

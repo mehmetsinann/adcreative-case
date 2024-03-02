@@ -55,9 +55,9 @@ function App() {
   }
 
   return (
-    <div className="flex flex-col justify-center items-center">
+    <div className="flex flex-col justify-center items-center w-screen h-screen px-4">
       <div
-        className="relative w-1/2 flex flex-wrap border border-gray-200 my-4 rounded-md pr-20 cursor-text"
+        className="relative md:w-1/2 sm:w-2/3 w-full flex flex-wrap border border-gray-200 my-4 rounded-md pr-20 cursor-text"
         onClick={() => {
           inputRef?.current?.focus();
         }}
@@ -77,7 +77,7 @@ function App() {
           onChange={(e) => setSearchTerm(e.target.value)}
         />
         <button
-          className="absolute self-center right-2 p-2 bg-gray-300 rounded-md transition-all duration-300 ease-in-out hover:bg-gray-400"
+          className="absolute self-center right-2 p-2 bg-gray-300 rounded-md hover:bg-gray-400 transition-all duration-300 ease-in-out"
           onClick={() => {
             setIsMenuOpen(!isMenuOpen);
           }}
@@ -85,18 +85,21 @@ function App() {
           {isMenuOpen ? <IoCaretUp size={20} /> : <IoCaretDown size={20} />}
         </button>
       </div>
-      {isMenuOpen && (
-        <div className="w-1/2 h-96 border mb-4 border-gray-200 rounded-lg divide-y overflow-y-scroll">
-          {characters.map((character) => (
-            <CharacterItem
-              key={character.id}
-              character={character}
-              searchTerm={searchTerm}
-              isSelected={selectedCharacters.some((c) => c.id === character.id)}
-            />
-          ))}
-        </div>
-      )}
+
+      <div
+        className={`md:w-1/2 sm:w-2/3 w-full ${
+          isMenuOpen ? "border md:h-1/2 h-full" : "h-0"
+        } mb-4 border-gray-200 rounded-lg divide-y overflow-y-scroll transition-all duration-300 ease-in-out`}
+      >
+        {characters.map((character) => (
+          <CharacterItem
+            key={character.id}
+            character={character}
+            searchTerm={searchTerm}
+            isSelected={selectedCharacters.some((c) => c.id === character.id)}
+          />
+        ))}
+      </div>
     </div>
   );
 }

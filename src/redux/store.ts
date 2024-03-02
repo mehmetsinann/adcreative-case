@@ -8,10 +8,6 @@ export const store = configureStore({
     characters: characterSlice,
     selected: selectedSlice,
   },
-  middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware({
-      serializableCheck: false,
-    }),
 });
 
 export type RootState = ReturnType<typeof store.getState>;

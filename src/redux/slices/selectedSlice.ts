@@ -17,7 +17,7 @@ const selectedSlice = createSlice({
     },
     unselect: (state, action) => {
       state.selectedCharacters = state.selectedCharacters.filter(
-        (character) => character.id !== action.payload.id
+        (character) => character.id !== action.payload
       );
     },
   },
